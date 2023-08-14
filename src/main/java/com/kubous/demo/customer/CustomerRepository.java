@@ -8,8 +8,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-@Component
-@Primary
 public class CustomerRepository implements CustomerRepo { //class used for connecting to Database
     @Override
     public List<Customer> getCustomers() {
