@@ -1,8 +1,8 @@
 package com.kubous.demo.customer;
 
+import com.kubous.demo.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -24,6 +24,6 @@ public class CustomerService { //Business logic for domain we are working with (
     Customer getCustomer(Long id) {
         return getCustomers()
                 .stream().filter(customer -> customer.getId().equals(id))
-                .findFirst().orElseThrow(() -> new IllegalStateException("customer not found"));
+                .findFirst().orElseThrow(() -> new NotFoundException("customer with id " + id + " not found"));
     }
 }
