@@ -10,20 +10,19 @@ import java.util.List;
 public class CustomerService { //Business logic for domain we are working with (Customer)
 
     //reference to DAO layer
-    private final CustomerRepo customerRepo;
+    private final CustomerRepository customerRepository;
 
     @Autowired
-    public CustomerService(CustomerRepo customerRepo) {
-        this.customerRepo = customerRepo;
+    public CustomerService(CustomerRepository customerRepo) {
+        this.customerRepository = customerRepo;
     }
 
     List<Customer> getCustomers() {
-        return customerRepo.getCustomers();
+        return customerRepository.findAll();
     }
 
     Customer getCustomer(Long id) {
-        return getCustomers()
-                .stream().filter(customer -> customer.getId().equals(id))
-                .findFirst().orElseThrow(() -> new NotFoundException("customer with id " + id + " not found"));
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("customer with id " + id + " not found"));
     }
 }
