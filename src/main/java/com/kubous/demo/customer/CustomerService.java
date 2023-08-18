@@ -21,6 +21,8 @@ public class CustomerService { //Business logic for domain we are working with (
         this.customerRepository = customerRepo;
     }
 
+
+
     List<Customer> getCustomers() {
         LOGGER.info("getCustomers was called");
         return customerRepository.findAll();
